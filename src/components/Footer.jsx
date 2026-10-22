@@ -1,6 +1,29 @@
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
+import { GlobalContext } from "../GlobalContext";
+
+const sweText = {
+  "title": ["REDO ATT TA NÄSTA STEG?", "Boka din plats idag."],
+  "button": "BOKA DIN PLATS →"
+}
+
+const engText = {
+  "title": ["READY TO TAKE THE NEXT STEP?", "Book your spot today."],
+  "button": "BOOK YOUR SPOT →"
+}
 
 export default function Footer() {
+  const { language } = useContext(GlobalContext);
+  const [text, setText] = useState(sweText);
+
+  useEffect(() => {
+    if (language == "sv") {
+      setText(sweText);
+    } else {
+      setText(engText);
+    }
+  }, [language]);
+
   return <footer
     className="
       relative
@@ -57,12 +80,10 @@ export default function Footer() {
             tracking-[0.25em]
           "
         >
-          REDO ATT TA NÄSTA STEG?
+          {text.title[0]}
         </p>
 
-        <h2 className="font-serif text-3xl md:text-4xl">
-          Boka din plats idag.
-        </h2>
+        <h2 className="font-serif text-3xl md:text-4xl">{text.title[1]}</h2>
 
         <Link
           to="/booking"
@@ -80,7 +101,7 @@ export default function Footer() {
             transition
           "
         >
-          BOKA DIN PLATS →
+          {text.button}
         </Link>
       </section>
     </div>

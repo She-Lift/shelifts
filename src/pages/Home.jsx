@@ -1,8 +1,73 @@
 import { Link } from "react-router";
 import { FaCalendarAlt, FaDumbbell, FaRegHeart } from "react-icons/fa";
 import { FaPeopleGroup } from "react-icons/fa6";
+import { useContext, useEffect, useState } from "react";
+import { GlobalContext } from "../GlobalContext";
+
+const sweText = {
+  "button": "BOKA DIN PLATS →",
+  "iconSection": [
+    {
+      "icon": <FaDumbbell className="text-6xl" />,
+      "title": "SMÅ GRUPPER",
+      "text": "MAX 8 DELTAGARE"
+    },
+    {
+      "icon": <FaRegHeart className="text-6xl" />,
+      "title": "PERSONLIG COACHING",
+      "text": "INDIVIDUELL VÄGLEDNING"
+    },
+    {
+      "icon": <FaPeopleGroup className="text-6xl" />,
+      "title": "GIRLS ONLY",
+      "text": "TRYGG OCH MOTIVERANDE MILJÖ"
+    },
+    {
+      "icon": <FaCalendarAlt className="text-6xl" />,
+      "title": "3 MÅNADERS BLOCK",
+      "text": "TYDLIG UTVECKLING"
+    }
+  ]
+};
+
+const engText = {
+  "button": "BOOK YOUR SPOT →",
+  "iconSection": [
+    {
+      "icon": <FaDumbbell className="text-6xl" />,
+      "title": "SMALL GROUPS",
+      "text": "MAX 8 PARTICIPANTS"
+    },
+    {
+      "icon": <FaRegHeart className="text-6xl" />,
+      "title": "PERSONAL COACHING",
+      "text": "INDIVIDUAL GUIDANCE"
+    },
+    {
+      "icon": <FaPeopleGroup className="text-6xl" />,
+      "title": "GIRLS ONLY",
+      "text": "SAFE AND MOTIVATING ENVIRONMENT"
+    },
+    {
+      "icon": <FaCalendarAlt className="text-6xl" />,
+      "title": "3-MONTH BLOCK",
+      "text": "CLEAR DEVELOPMENT"
+    }
+  ]
+};
 
 export default function Home() {
+  const { language } = useContext(GlobalContext);
+  const [text, setText] = useState(sweText);
+
+  useEffect(() => {
+    if (language == "sv") {
+      setText(sweText);
+    } else {
+      setText(engText);
+    }
+  }, [language]);
+
   return <article className="flex flex-col">
     <section className="
   relative isolate
@@ -42,10 +107,7 @@ export default function Home() {
           </h1>
 
           <p className="text-white text-sm md:text-lg font-medium tracking-wider mt-2">
-            <span className="underline decoration-[4px] decoration-primary underline-offset-[20px]">
-              GIRLS
-            </span>
-            {" "}ONLY STRENGTH CLUB
+            <span className="underline decoration-[4px] decoration-primary underline-offset-[20px]">GIRLS</span> ONLY STRENGTH CLUB
           </p>
 
         </div>
@@ -78,9 +140,7 @@ export default function Home() {
             py-4 px-8
             rounded-full
           "
-        >
-          BOKA DIN PLATS →
-        </Link>
+        >{text.button}</Link>
 
       </div>
 
@@ -93,26 +153,12 @@ export default function Home() {
       divide-white/50
       text-center
     ">
-      <section className="w-full md:w-1/4 pr-6 py-6 md:pr-8 md:py-8 flex flex-col items-center">
-        <FaDumbbell className="text-6xl" />
-        <p className="font-bold py-2">SMÅ GRUPPER</p>
-        <p className="font-light">MAX 6 DELTAGARE</p>
+      {text.iconSection.map((item) => <section className="w-full md:w-1/4 pr-6 py-6 md:pr-8 md:py-8 flex flex-col items-center">
+        {item.icon}
+        <p className="font-bold py-2">{item.title}</p>
+        <p className="font-light">{item.text}</p>
       </section>
-      <section className="w-full md:w-1/4 p-6 md:p-8 flex flex-col items-center">
-        <FaRegHeart className="text-6xl" />
-        <p className="font-bold py-2">PERSONLIG COACHING</p>
-        <p className="font-light">INDIVIDUELL VÄGLEDNING</p>
-      </section>
-      <section className="w-full md:w-1/4 p-6 md:p-8 flex flex-col items-center">
-        <FaPeopleGroup className="text-6xl" />
-        <p className="font-bold py-2">GIRLS ONLY</p>
-        <p className="font-light">TRYGG OCH MOTIVERANDE MILJÖ</p>
-      </section>
-      <section className="w-full md:w-1/4 pl-6 py-6 md:pl-8 md:py-8 flex flex-col items-center">
-        <FaCalendarAlt className="text-6xl" />
-        <p className="font-bold py-2">3 MÅNADERS BLOCK</p>
-        <p className="font-light">TYDLIG UTVECKLING</p>
-      </section>
+      )}
     </section>
   </article>;
 }

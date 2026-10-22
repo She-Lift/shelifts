@@ -6,12 +6,53 @@ import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
 
 const sweText = {
+  "title": "TRÄNING",
+  "header": ["Starkare kropp,", "star", "kare du."],
+  "sub1": "På SHE LIFTS tränar vi styrketräning i små grupper där du får det bästa av två världar - personlig coaching och gemenskap.",
+  "sub2": "Du följer ett strukturerat träningsupplägg med fokus på att bygga syrka, muskler och självförtroende. Vi tränar tillsammans, men du får fortfarande den individuella vägledning du behöver för att utvecklas.",
   "": "",
+  "iconSection": [
+    {
+      "icon": <FaDumbbell className="text-6xl" />,
+      "title": "BYGG MUSKLER",
+      "text": ["Fokuserad och ", "effektiv styrketräning"]
+    },
+    {
+      "icon": <GrLineChart className="text-6xl" />,
+      "title": "BLI STARKARE",
+      "text": ["Tydlig och progression ", "som utmanar dig."]
+    },
+    {
+      "icon": <GoGear className="text-6xl" />,
+      "title": "LÄR DIG TEKNIK",
+      "text": ["Trygg och effektiv träning ", "med personlig coaching."]
+    },
+    {
+      "icon": <FaPeopleGroup className="text-6xl" />,
+      "title": "HA KUL",
+      "text": ["Träning blir bättre ", "när man gör den tillsammans."]
+    }
+  ],
+  "steps": [
+    {
+      "number": "01",
+      "title": "START",
+      "description": "Vi lär känna din nivå och sätter grunden."
+    },
+    {
+      "number": "02",
+      "title": "BYGG",
+      "description": "Vi ökar belastningen, förbättrar tekniken och bygger styrka."
+    },
+    {
+      "number": "03",
+      "title": "UTVECKLAS",
+      "description": "Vi följer dina resultat och fortsätter utmana dig."
+    }
+  ]
 };
 
-const engText = {
-  "": "",
-};
+const engText = {};
 
 export default function Training() {
   const { language } = useContext(GlobalContext);
@@ -24,24 +65,6 @@ export default function Training() {
       setText(engText);
     }
   }, [language]);
-
-  const steps = [
-    {
-      number: "01",
-      title: "START",
-      description: "Vi lär känna din nivå och sätter grunden."
-    },
-    {
-      number: "02",
-      title: "BYGG",
-      description: "Vi ökar belastningen, förbättrar tekniken och bygger styrka."
-    },
-    {
-      number: "03",
-      title: "UTVECKLAS",
-      description: "Vi följer dina resultat och fortsätter utmana dig."
-    }
-  ];
 
   return <div>
     <section className="flex justify-between p-10 sm:p-0 sm:pl-10">
@@ -122,30 +145,12 @@ export default function Training() {
       divide-white/50
       text-center
     ">
-        <section className="w-full md:w-1/4 pr-6 py-6 md:pr-8 md:py-8 flex flex-col items-center">
-          <FaDumbbell className="text-6xl" />
-          <p className="font-bold py-2">BYGG MUSKLER</p>
-          <p className="font-medium">Fokuserad och <br />effektiv styrketräning</p>
+        {text.iconSection.map((item) => <section className="w-full md:w-1/4 pr-6 py-6 md:pr-8 md:py-8 flex flex-col items-center">
+          {item.icon}
+          <p className="font-bold py-2">{item.title}</p>
+          <p className="font-medium">{item.text[0]} <br />{item.text[1]}</p>
         </section>
-
-        <section className="w-full md:w-1/4 p-6 md:p-8 flex flex-col items-center">
-          <GrLineChart className="text-6xl" />
-          <p className="font-bold py-2">BLI STARKARE</p>
-          <p className="font-medium">Tydlig och progression <br />som utmanar dig.</p>
-        </section>
-
-        <section className="w-full md:w-1/4 p-6 md:p-8 flex flex-col items-center">
-          <GoGear className="text-6xl" />
-          <p className="font-bold py-2">LÄR DIG TEKNIK</p>
-          <p className="font-medium">Trygg och effektiv träning <br />med personlig coaching.</p>
-        </section>
-
-        <section className="w-full md:w-1/4 pl-6 py-6 md:pl-8 md:py-8 flex flex-col items-center">
-          <FaPeopleGroup className="text-6xl" />
-          <p className="font-bold py-2">HA KUL</p>
-          <p className="font-medium">Träning blir bättre <br />när man gör den <br />tillsammans.</p>
-        </section>
-
+        )}
       </div>
     </section >
 
@@ -166,7 +171,7 @@ export default function Training() {
       </section>
 
       <section className="flex flex-col gap-8">
-        {steps.map((step, index) => (
+        {text.steps.map((step, index) => (
           <div
             key={step.number}
             className="
@@ -178,7 +183,7 @@ export default function Training() {
           >
 
             <div className="relative flex justify-center">
-              {index < steps.length - 1 && (
+              {index < text.steps.length - 1 && (
                 <div className="
                   absolute
                   left-1/2 top-4 -bottom-12

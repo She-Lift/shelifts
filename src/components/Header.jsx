@@ -37,7 +37,7 @@ export default function Header() {
 
     <div className="flex justify-around pb-8 xl:hidden">
 
-      <section className="text-primary text-center">
+      <Link to={"/"} className="text-primary text-center">
         <h1 className="text-4xl font-black">
           SHE LIFTS
         </h1>
@@ -46,7 +46,7 @@ export default function Header() {
           GIRLS ONLY STRENGTH CLUB
         </p>
 
-      </section>
+      </Link>
 
       <section className="gap-6 items-center hidden sm:flex">
 
