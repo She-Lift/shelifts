@@ -22,7 +22,7 @@ jobs:
 
     environment: production
 
-    steps:
+    steps: 
       - name: Configure SSH
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -36,6 +36,11 @@ jobs:
 
           printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/known_hosts
+
+          # Validate private key
+          ssh-keygen -y -P "" -f ~/.ssh/id_ed25519 > /dev/null
+
+          echo "SSH private key is valid"
 
       - name: Run deployment script
         env:
