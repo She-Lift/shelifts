@@ -28,8 +28,15 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
         run: |
+          set -euo pipefail
+
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
+
+          if [[ -z "$SSH_PRIVATE_KEY" ]]; then
+            echo "::error::SSH_PRIVATE_KEY is empty or unavailable"
+            exit 1
+          fi
 
           printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
