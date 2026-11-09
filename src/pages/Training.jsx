@@ -5,89 +5,9 @@ import { GoGear } from "react-icons/go";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
 
-const sweText = {
-  "title": "TRÄNING",
-  "header": ["Starkare kropp,", "star", "kare du."],
-  "sub1": "På SHE LIFTS tränar vi styrketräning i små grupper där du får det bästa av två världar - personlig coaching och gemenskap.",
-  "sub2": "Du följer ett strukturerat träningsupplägg med fokus på att bygga syrka, muskler och självförtroende. Vi tränar tillsammans, men du får fortfarande den individuella vägledning du behöver för att utvecklas.",
-  "title2": "SÅ FUNGERAR DET",
-  "numberSection": [
-    {
-      "number": "01",
-      "subject": ["SMÅ", "GRUPPER"],
-      "text": "Max 6 kvinnor per grupp. Det gör att jag kan se dig, korrigera din teknik och följa din utveckling - samtidigt som du får energi och gemenskapen från att träna tillsammans med andra."
-    },
-    {
-      "number": "02",
-      "subject": ["PER", "SONLIG COACHING"],
-      "text": "Du får individuell vägledning varje pass. Jag hjälper dig med teknik, belastning, övningsutförande och progression.Målet är inte bara att du ska träna hårt - utan att du ska träna rätt."
-    },
-    {
-      "number": "03",
-      "subject": ["STR", "UKTURERAD TRÄNING"],
-      "text": "Träningen är placerad i block så att du kan bygga styrka, utvecklas och faktiskt se dina resultat över tid."
-    }
-  ],
-  "title3": ["Mer än ", "bara träning."],
-  "sub3": "SHE LIFTS är för kvinnor som vill bygga muskler, bli starkare och känna sig mer självsäkra - både i gymmet och i vardagen.",
-  "": "",
-  "iconSection": [
-    {
-      "icon": <FaDumbbell className="text-6xl" />,
-      "title": "BYGG MUSKLER",
-      "text": ["Fokuserad och ", "effektiv styrketräning"]
-    },
-    {
-      "icon": <GrLineChart className="text-6xl" />,
-      "title": "BLI STARKARE",
-      "text": ["Tydlig och progression ", "som utmanar dig."]
-    },
-    {
-      "icon": <GoGear className="text-6xl" />,
-      "title": "LÄR DIG TEKNIK",
-      "text": ["Trygg och effektiv träning ", "med personlig coaching."]
-    },
-    {
-      "icon": <FaPeopleGroup className="text-6xl" />,
-      "title": "HA KUL",
-      "text": ["Träning blir bättre ", "när man gör den tillsammans."]
-    }
-  ],
-  "title4": "TRE MÅNADER",
-  "header2": ["En tydlig ", "re", "sa framåt."],
-  "sub4": "Hos SHE LIFTS tränar du i 3-månadersblock. Det ger oss tid att faktiskt bygga något - istället för att bara gå från pass till pass.",
-  "steps": [
-    {
-      "number": "01",
-      "title": "START",
-      "description": "Vi lär känna din nivå och sätter grunden."
-    },
-    {
-      "number": "02",
-      "title": "BYGG",
-      "description": "Vi ökar belastningen, förbättrar tekniken och bygger styrka."
-    },
-    {
-      "number": "03",
-      "title": "UTVECKLAS",
-      "description": "Vi följer dina resultat och fortsätter utmana dig."
-    }
-  ],
-};
-
-const engText = {};
-
 export default function Training() {
-  const { language } = useContext(GlobalContext);
-  const [text, setText] = useState(sweText);
-
-  useEffect(() => {
-    if (language == "sv") {
-      setText(sweText);
-    } else {
-      setText(engText);
-    }
-  }, [language]);
+  const { textData } = useContext(GlobalContext);
+  const [text, setText] = useState(textData.training);
 
   return <div>
     

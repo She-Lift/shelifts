@@ -4,67 +4,9 @@ import { FaInstagram } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 import { GlobalContext } from "../GlobalContext.jsx";
 
-const sweText = {
-  "title": "KONTAKT",
-  "sub1": ["H", "ör av dig."],
-  "sub2": ["Har du frågor om medlemskap, träning eller vill komma i kontakt med oss?", "Fyll i formuläret så svarar vi så snart vi kan."],
-  "form": ["Namn *", "E-post *", "Ämne *", "Meddelande *"],
-  "button": "SKICKA MEDDELANDE →",
-  "iconSection": [
-    {
-      "icon": <CiMail className="text-6xl" />,
-      "title": "E-POST",
-      "text": "info@shelifts.se"
-    },
-    {
-      "icon": <FaInstagram className="text-6xl" />,
-      "title": "INSTAGRAM",
-      "text": "@shelifts.se"
-    },
-    {
-      "icon": <IoLocationOutline className="text-6xl" />,
-      "title": "PLATS",
-      "text": "Malmö, Limhamn"
-    }
-  ]
-};
-
-const engText = {
-  "title": "CONTACT",
-  "sub1": ["G", "et in touch"],
-  "sub2": ["Do you have questions about membership or training, or would you like to get in touch with us?", "Fill out the form and we will respond as soon as we can."],
-  "form": ["Name *", "E-post *", "Subject *", "Message *"],
-  "button": "SEND MESSAGE →",
-  "iconSection": [
-    {
-      "icon": <CiMail className="text-6xl" />,
-      "title": "E-POST",
-      "text": "info@shelifts.se"
-    },
-    {
-      "icon": <FaInstagram className="text-6xl" />,
-      "title": "INSTAGRAM",
-      "text": "@shelifts.se"
-    },
-    {
-      "icon": <IoLocationOutline className="text-6xl" />,
-      "title": "PLACE",
-      "text": "Malmö, Limhamn"
-    }
-  ]
-};
-
 export default function Contact() {
-  const { language } = useContext(GlobalContext);
-  const [text, setText] = useState(sweText);
-
-  useEffect(() => {
-    if (language == "sv") {
-      setText(sweText);
-    } else {
-      setText(engText);
-    }
-  }, [language]);
+  const { textData } = useContext(GlobalContext);
+  const [text, setText] = useState(textData.contact);
 
   return <article className="flex min-h-[70vh] gap-4 justify-center lg:justify-between lg:items-center">
     <section className="min-h-full lg:w-1/2 px-10 sm:pr-0 py-2 sm:py-20 max-w-[1000px]">

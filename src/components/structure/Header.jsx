@@ -1,29 +1,11 @@
 import { Link } from "react-router";
 import { FaInstagram } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
-import { GlobalContext } from "../GlobalContext";
-
-const sweText = {
-  "button": "BOKA DIN PLATS",
-  "nav": ["START", "TRÄNING", "MEDLEMSKAP", "KONTAKT", "OM MIG"]
-};
-
-const engText = {
-  "button": "BOOK YOUR SPOT",
-  "nav": ["START", "TRAINING", "MEMBERSHIP", "CONTACT", "ABOUT"]
-};
+import { GlobalContext } from "../../GlobalContext";
 
 export default function Header() {
-  const { language } = useContext(GlobalContext);
-  const [text, setText] = useState(sweText);
-
-  useEffect(() => {
-    if (language == "sv") {
-      setText(sweText);
-    } else {
-      setText(engText);
-    }
-  }, [language]);
+  const { textData } = useContext(GlobalContext);
+  const [text, setText] = useState(textData.header);
 
   return <header className="
       flex

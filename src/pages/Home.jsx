@@ -4,69 +4,9 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
 
-const sweText = {
-  "button": "BOKA DIN PLATS →",
-  "iconSection": [
-    {
-      "icon": <FaDumbbell className="text-6xl" />,
-      "title": "SMÅ GRUPPER",
-      "text": "MAX 8 DELTAGARE"
-    },
-    {
-      "icon": <FaRegHeart className="text-6xl" />,
-      "title": "PERSONLIG COACHING",
-      "text": "INDIVIDUELL VÄGLEDNING"
-    },
-    {
-      "icon": <FaPeopleGroup className="text-6xl" />,
-      "title": "GIRLS ONLY",
-      "text": "TRYGG OCH MOTIVERANDE MILJÖ"
-    },
-    {
-      "icon": <FaCalendarAlt className="text-6xl" />,
-      "title": "3 MÅNADERS BLOCK",
-      "text": "TYDLIG UTVECKLING"
-    }
-  ]
-};
-
-const engText = {
-  "button": "BOOK YOUR SPOT →",
-  "iconSection": [
-    {
-      "icon": <FaDumbbell className="text-6xl" />,
-      "title": "SMALL GROUPS",
-      "text": "MAX 8 PARTICIPANTS"
-    },
-    {
-      "icon": <FaRegHeart className="text-6xl" />,
-      "title": "PERSONAL COACHING",
-      "text": "INDIVIDUAL GUIDANCE"
-    },
-    {
-      "icon": <FaPeopleGroup className="text-6xl" />,
-      "title": "GIRLS ONLY",
-      "text": "SAFE AND MOTIVATING ENVIRONMENT"
-    },
-    {
-      "icon": <FaCalendarAlt className="text-6xl" />,
-      "title": "3-MONTH BLOCK",
-      "text": "CLEAR DEVELOPMENT"
-    }
-  ]
-};
-
 export default function Home() {
-  const { language } = useContext(GlobalContext);
-  const [text, setText] = useState(sweText);
-
-  useEffect(() => {
-    if (language == "sv") {
-      setText(sweText);
-    } else {
-      setText(engText);
-    }
-  }, [language]);
+  const { textData } = useContext(GlobalContext);
+  const [text, setText] = useState(textData.home);
 
   return <article className="flex flex-col">
     <section className="
