@@ -1,28 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
-import { GlobalContext } from "../GlobalContext";
-
-const sweText = {
-  "title": ["REDO ATT TA NÄSTA STEG?", "Boka din plats idag."],
-  "button": "BOKA DIN PLATS →"
-}
-
-const engText = {
-  "title": ["READY TO TAKE THE NEXT STEP?", "Book your spot today."],
-  "button": "BOOK YOUR SPOT →"
-}
+import { GlobalContext } from "../../GlobalContext";
 
 export default function Footer() {
-  const { language } = useContext(GlobalContext);
-  const [text, setText] = useState(sweText);
-
-  useEffect(() => {
-    if (language == "sv") {
-      setText(sweText);
-    } else {
-      setText(engText);
-    }
-  }, [language]);
+  const { textData } = useContext(GlobalContext);
+  const [text, setText] = useState(textData.footer);
 
   return <footer
     className="

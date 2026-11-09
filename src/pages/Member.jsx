@@ -5,89 +5,9 @@ import { GoGear } from "react-icons/go";
 import { Link } from "react-router";
 import { GlobalContext } from "../GlobalContext";
 
-const sweText = {
-  "title": "MEDLEMSKAP",
-  "header": ["Välj ditt", "trä", "ningsblock."],
-  "sub1": [
-    "Samma tjejer | Samma coach | Tydlig progression",
-    "Våra medlemskap är skapade för att ge dig kontinuitet, struktur och resultat - i en trygg och motiverande miljö."
-  ],
-  "membershipCards": [
-    {
-      "name": "BAS",
-      "amount": "2 PASS / VECKAN",
-      "info": "För dig som vill bygga styrka och utvecklas med personlig tränare en gång  veckan.",
-      "price": "2 995 kr",
-      "time": "för 12 veckor"
-    },
-    {
-      "name": "FULL",
-      "amount": "3 PASS / VECKAN",
-      "info": "För dig som vill prioritera din träning och göra SHE LIFTS till en självklar del av din vardag.",
-      "price": "4 595 kr",
-      "time": "för 12 veckor"
-    }
-  ],
-  "cardSub": "MEDLEMSKAP",
-  "cardIcons": [
-    {
-      "icon": <FaPeopleGroup className="text-6xl" />,
-      "text": ["MAX 8 ", "DELTAGARE"],
-    },
-    {
-      "icon": <BsBarChart className="text-6xl" />,
-      "text": ["PERSONLIG ", "COACHING"],
-    },
-    {
-      "icon": <GoGear className="text-6xl" />,
-      "text": ["STRUKTURERAD ", "TRÄNING"],
-    }
-  ],
-  "button": "BOKA DIN PLATS →",
-  "title2": "VANLIGA FRÅGOR",
-  "header2": "Har du frågor?",
-  "questions": [
-    {
-      "question": "Hur fungerar betalningen?",
-      "answer": "Här skriver du hur betalningen fungerar."
-    },
-    {
-      "question": "Kan jag byta tid under mitt träningsblock?",
-      "answer": "Här beskriver du reglerna för att byta tid."
-    },
-    {
-      "question": "Vad händer om jag missar ett pass?",
-      "answer": "Här skriver du vad som gäller vid frånvaro."
-    },
-    {
-      "question": "Hur många är det i varje grupp?",
-      "answer": "Vi tränar i små grupper med max 6 deltagare."
-    },
-    {
-      "question": "Behöver jag ha tidigare erfarenhet av styrketräning?",
-      "answer": "Här beskriver du vilka förkunskaper som behövs."
-    },
-    {
-      "question": "Vad ingår i medlemskapet?",
-      "answer": "Här beskriver du vad medlemskapet innehåller."
-    }
-  ]
-};
-
-const engText = {};
-
 export default function Member() {
-  const { language } = useContext(GlobalContext);
-  const [text, setText] = useState(sweText);
-
-  useEffect(() => {
-    if (language == "sv") {
-      setText(sweText);
-    } else {
-      setText(engText);
-    }
-  }, [language]);
-
+  const { textData } = useContext(GlobalContext);
+  const [text, setText] = useState(textData.member);
 
   return <div>
     <section className="flex justify-between p-10 sm:p-0 sm:pl-10">

@@ -1,87 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from "../GlobalContext";
 
-const sweText = {
-  "title": ["Starkare kvinnor,", "tillsammans."],
-  "subText": "SHE LIFTS är en girls only strength club där vi tränar styrka, bygger självförtroende och skapar en gemenskap som lyfter – på riktigt.",
-  "aboutSections": [
-    {
-      label: "GRUNDAREN",
-      title: "Hej, jag heter",
-      italicTitle: "Kristin.",
-      paragraphs: [
-        "Jag är personlig tränare med över 15 års erfarenhet av styrketräning.",
-        "Jag startade SHE LIFTS för att skapa en plats där kvinnor kan träna styrka tillsammans i en miljö som känns trygg, motiverande och personlig."
-      ]
-    },
-    {
-      label: "MIN VISION",
-      title: "Mer än bara",
-      italicTitle: "träning.",
-      paragraphs: [
-        "SHE LIFTS är för kvinnor som vill bli starkare, bygga muskler, utveckla sin teknik och känna sig mer självsäkra i gymmet.",
-        "Jag tror att styrka inte bara är fysiskt, utan också mentalt. Här handlar det om att utmana sig själv, stötta varandra och ha kul på vägen."
-      ]
-    },
-    {
-      label: "SÅ TRÄNAR VI",
-      title: "Små grupper,",
-      italicTitle: "stora resultat.",
-      paragraphs: [
-        "Träningen sker i små grupper med 8 deltagare, vilket gör att varje person får individuell coaching samtidigt som vi följer upp progression.",
-        "Oavsett om du är nybörjare eller erfaren får du coaching, vägledning och en gemenskap som motiverar dig att fortsätta utvecklas."
-      ]
-    }
-  ],
-  "endText": "BLI EN DEL AV SHE LIFTS"
-};
-
-const engText = {
-  "title": ["Stronger women,", "together."],
-  "subText": "SHE LIFTS is a girls-only strength club where we train for strength, build self-confidence, and create a community that uplifts - for real.",
-  "aboutSections": [
-    {
-      label: "THE FOUNDER",
-      title: "Hi, my name is",
-      italicTitle: "Kristin.",
-      paragraphs: [
-        "I am a personal trainer with over 15 years of experience in strength training.",
-        "I started SHE LIFTS to create a space where women can do strength training together in an environment that feels safe, motivating, and personal."
-      ]
-    },
-    {
-      label: "MY VISION",
-      title: "More than just",
-      italicTitle: "exercise.",
-      paragraphs: [
-        "SHE LIFTS is for women who want to get stronger, build muscle, develop their technique, and feel more confident in the gym.",
-        "I believe that strength is not just physical, but also mental. It’s about challenging yourself, supporting one another, and having fun along the way."
-      ]
-    },
-    {
-      label: "HOW WE TRAIN",
-      title: "Small groups,",
-      italicTitle: "big results.",
-      paragraphs: [
-        "Training takes place in small groups with 8 participants, ensuring that each person receives individual coaching while we track their progress.",
-        "Whether you are a beginner or experienced, you receive coaching, guidance, and a community that motivates you to keep developing."
-      ]
-    }
-  ],
-  "endText": "BECOME PART OF SHE LIFTS"
-};
-
 export default function About() {
-  const { language } = useContext(GlobalContext);
-  const [text, setText] = useState(sweText);
-
-  useEffect(() => {
-    if (language == "sv") {
-      setText(sweText);
-    } else {
-      setText(engText);
-    }
-  }, [language]);
+  const { textData } = useContext(GlobalContext);
+  const [text, setText] = useState(textData.about);
 
   return <article className="w-full bg-background font-montserrat">
 
